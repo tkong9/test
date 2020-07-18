@@ -31,24 +31,33 @@ const NewsItemBlock = styled.div`
     margin-top: 3rem;
   }
 `;
+
 const NewsItem = ({ article }) => {
-  const { title, description, url, urlToImage } = article;
+  const {
+    provider,
+    source,
+    title,
+    image,
+    source_image,
+    article_url,
+    publish_time,
+  } = article;
+
   return (
     <NewsItemBlock>
-      {urlToImage && (
+      {image && (
         <div className="thumbnail">
-          <a href={url} target="_blank" rel="noopener noreferrer">
-            <img src={urlToImage} alt="thumbnail" />
+          <a href={article_url} target="_blank" rel="noopener noreferrer">
+            <img src={image} alt="thumbnail" />
           </a>
         </div>
       )}
       <div className="contents">
         <h2>
-          <a href={url} target="_blank" rel="noopener noreferrer">
+          <a href={article_url} target="_blank" rel="noopener noreferrer">
             {title}
           </a>
         </h2>
-        <p>{description}</p>
       </div>
     </NewsItemBlock>
   );

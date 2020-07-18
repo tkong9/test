@@ -1,9 +1,11 @@
 import React from 'react';
 import { Route } from 'react-router-dom';
-import NewsPage from './components/kr/NewsPage';
+import KoreanNewsPage from './components/kr/NewsPage';
+import BrazilNewsPage from './components/br/NewsPage';
 
 const App = () => {
-  return <Route path="/:category?" component={NewsPage} />;
+  //return <Route path="/:category?" component={KoreanNewsPage} />;
+  return <Route path="/:category?" component={BrazilNewsPage} />;
 };
 
 export default App;

@@ -19,10 +19,9 @@ const NewsListBlock = styled.div`
 
 const NewsList = ({ category }) => {
   const [loading, response, error] = usePromise(() => {
-    const query = category === 'all' ? '' : `&category=${category}`;
-    return axios.get(
-      `https://newsapi.org/v2/top-headlines?country=kr${query}&apiKey=A384e22774024150b910eb0325bc9371`,
-    );
+    const query = category === 'top' ? 'top' : `${category}`;
+    const newsURL = `http://bridge-news-cdn-dev.internet.apps.samsung.com/qap/br/${query}.json`;
+    return axios.get(newsURL);
   }, [category]);
 
   // 대기중일 때
@@ -40,11 +39,11 @@ const NewsList = ({ category }) => {
   }
 
   // response 값이 유효할 때
-  const { articles } = response.data;
+  const articles = response.data;
   return (
     <NewsListBlock>
       {articles.map((article) => (
-        <NewsItem key={article.url} article={article} />
+        <NewsItem key={article.article_url} article={article} />
       ))}
     </NewsListBlock>
   );
