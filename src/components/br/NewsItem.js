@@ -2,29 +2,45 @@ import React from 'react';
 import styled from 'styled-components';
 
 const NewsItemBlock = styled.div`
+  position: relative;
   margin-top: 2rem;
   .content {
     flex: auto;
-    background: white;
     padding: 1em;
-    border-radius: 0 0 1rem 1rem;
     a {
-      color: black;
+      color: white;
       text-decoration: none;
     }
     p {
-      font-size: 11px;
+      font-size: 1rem;
       padding-top: 1em;
+      color: lightgray;
     }
+    position: absolute;
+    bottom: 0;
   }
   .card-image {
-    border-radius: 1rem 1rem 0 0;
+    border-radius: 1rem;
     height: 0;
-    padding-bottom: 60%;
-    background: lightgrey;
+    padding-bottom: 70%;
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
+  }
+  .card-image > * {
+    position: absolute;
+    z-index: 2;
+  }
+  .card-image:after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.4);
+    border-radius: 1rem;
+    @media (min-width: 600px) {
+      width: calc(100% - 2rem);
+    }
   }
 `;
 
@@ -44,21 +60,21 @@ const NewsItem = ({ article }) => {
       <figure
         className="card-image"
         style={{ backgroundImage: `url(${image})` }}
-      ></figure>
-
-      <div className="content">
-        <h2>
-          <a
-            className="news-desc"
-            href={article_url}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            {title}
-          </a>
-        </h2>
-        <p>{source}</p>
-      </div>
+      >
+        <div className="content">
+          <h2>
+            <a
+              className="news-desc"
+              href={article_url}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              {title}
+            </a>
+          </h2>
+          <p>{source}</p>
+        </div>
+      </figure>
     </NewsItemBlock>
   );
 };

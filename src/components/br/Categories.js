@@ -38,6 +38,7 @@ const categories = [
 ];
 
 const CategoriesBlock = styled.div`
+  z-index: 10;
   padding: 8px 18px;
   display: flex;
   position: sticky;
