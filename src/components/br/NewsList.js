@@ -5,16 +5,8 @@ import axios from 'axios';
 import usePromise from '../../lib/usePromise';
 
 const NewsListBlock = styled.div`
-  box-sizing: border-box;
-  padding-bottom: 3rem;
-  width: 768px;
-  margin: 0 auto;
-  margin-top: 2rem;
-  @media screen and (max-width: 768px) {
-    width: 100%;
-    padding-left: 1rem;
-    padding-right: 1rem;
-  }
+  /* width: 1000px; */
+  /* margin: 0 auto; */
 `;
 
 const NewsList = ({ category }) => {
@@ -41,7 +33,7 @@ const NewsList = ({ category }) => {
   // response 값이 유효할 때
   const articles = response.data;
   return (
-    <NewsListBlock>
+    <NewsListBlock className="news-list">
       {articles.map((article) => (
         <NewsItem key={article.article_url} article={article} />
       ))}

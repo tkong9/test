@@ -2,33 +2,45 @@ import React from 'react';
 import styled from 'styled-components';
 
 const NewsItemBlock = styled.div`
-  display: flex;
-
-  .thumbnail {
-    margin-right: 1rem;
-    img {
-      display: block;
-      width: 160px;
-      height: 100px;
-      object-fit: cover;
-    }
-  }
-  .contents {
-    h2 {
-      margin: 0;
-      a {
-        color: black;
-      }
+  position: relative;
+  margin-top: 2rem;
+  .content {
+    flex: auto;
+    padding: 1em;
+    a {
+      color: white;
+      text-decoration: none;
     }
     p {
-      margin: 0;
-      line-height: 1.5;
-      margin-top: 0.5rem;
-      white-space: normal;
+      font-size: 1rem;
+      padding-top: 1em;
+      color: lightgray;
     }
+    position: absolute;
+    bottom: 0;
   }
-  & + & {
-    margin-top: 3rem;
+  .card-image {
+    border-radius: 1rem;
+    height: 0;
+    padding-bottom: 70%;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+  }
+  .card-image > * {
+    position: absolute;
+    z-index: 2;
+  }
+  .card-image:after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.4);
+    border-radius: 1rem;
+    @media (min-width: 600px) {
+      width: calc(100% - 2rem);
+    }
   }
 `;
 
@@ -44,21 +56,25 @@ const NewsItem = ({ article }) => {
   } = article;
 
   return (
-    <NewsItemBlock>
-      {image && (
-        <div className="thumbnail">
-          <a href={article_url} target="_blank" rel="noopener noreferrer">
-            <img src={image} alt="thumbnail" />
-          </a>
+    <NewsItemBlock className="news-item">
+      <figure
+        className="card-image"
+        style={{ backgroundImage: `url(${image})` }}
+      >
+        <div className="content">
+          <h2>
+            <a
+              className="news-desc"
+              href={article_url}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              {title}
+            </a>
+          </h2>
+          <p>{source}</p>
         </div>
-      )}
-      <div className="contents">
-        <h2>
-          <a href={article_url} target="_blank" rel="noopener noreferrer">
-            {title}
-          </a>
-        </h2>
-      </div>
+      </figure>
     </NewsItemBlock>
   );
 };
