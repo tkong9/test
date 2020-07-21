@@ -1,6 +1,5 @@
 import React from 'react';
 import { Route } from 'react-router-dom';
-import KoreanNewsPage from './components/kr/NewsPage';
 import BrazilNewsPage from './components/br/NewsPage';
 
 const App = () => {
