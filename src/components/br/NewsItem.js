@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 const NewsItemBlock = styled.div`
   position: relative;
-  margin-top: 2rem;
+
   .content {
     flex: auto;
     padding: 1em;
@@ -38,9 +38,6 @@ const NewsItemBlock = styled.div`
     height: 100%;
     background: rgba(0, 0, 0, 0.4);
     border-radius: 1rem;
-    @media (min-width: 600px) {
-      width: calc(100% - 2rem);
-    }
   }
 `;
 
