@@ -4,21 +4,19 @@ import NewsItem from './NewsItem';
 import axios from 'axios';
 import usePromise from '../../lib/usePromise';
 
-const NewsListBlock = styled.div`
-  /* width: 1000px; */
-  /* margin: 0 auto; */
-`;
+const NewsListBlock = styled.div``;
 
 const NewsList = ({ category }) => {
   const [loading, response, error] = usePromise(() => {
     const query = category === 'top' ? 'top' : `${category}`;
-    const newsURL = `http://bridge-news-cdn-dev.internet.apps.samsung.com/qap/br/${query}.json`;
-    return axios.get(newsURL);
+    return axios.get(
+      `http://bridge-news-cdn-dev.internet.apps.samsung.com/qap/br/${query}.json`,
+    );
   }, [category]);
 
   // 대기중일 때
   if (loading) {
-    return <NewsListBlock>대기중...</NewsListBlock>;
+    return <NewsListBlock>Loading...</NewsListBlock>;
   }
   // 아직 response 값이 설정되지 않았을 때
   if (!response) {
@@ -27,14 +25,14 @@ const NewsList = ({ category }) => {
 
   // 에러가 발생했을 때
   if (error) {
-    return <NewsListBlock>에러 발생!</NewsListBlock>;
+    return <NewsListBlock>Error...!</NewsListBlock>;
   }
 
   // response 값이 유효할 때
-  const articles = response.data;
+  const { data } = response;
   return (
     <NewsListBlock className="news-list">
-      {articles.map((article) => (
+      {data.map((article) => (
         <NewsItem key={article.article_url} article={article} />
       ))}
     </NewsListBlock>

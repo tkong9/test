@@ -2,8 +2,8 @@ import React from 'react';
 import styled from 'styled-components';
 
 const NewsItemBlock = styled.div`
+  cursor: pointer;
   position: relative;
-
   .content {
     flex: auto;
     padding: 1em;
@@ -40,26 +40,22 @@ const NewsItemBlock = styled.div`
     border-radius: 1rem;
   }
 `;
-
 const NewsItem = ({ article }) => {
-  const {
-    provider,
-    source,
-    title,
-    image,
-    source_image,
-    article_url,
-    publish_time,
-  } = article;
+  const { title, article_url, image, source } = article;
+
+  const newsClicked = () => {
+    window.open(article_url);
+  };
 
   return (
     <NewsItemBlock className="news-item">
       <figure
         className="card-image"
         style={{ backgroundImage: `url(${image})` }}
+        onClick={newsClicked}
       >
         <div className="content">
-          <h2>
+          <div>
             <a
               className="news-desc"
               href={article_url}
@@ -68,8 +64,8 @@ const NewsItem = ({ article }) => {
             >
               {title}
             </a>
-          </h2>
-          <p>{source}</p>
+          </div>
+          <p>{source.name}</p>
         </div>
       </figure>
     </NewsItemBlock>
