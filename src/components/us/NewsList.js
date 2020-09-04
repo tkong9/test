@@ -10,7 +10,7 @@ const NewsList = ({ category }) => {
   const [loading, response, error] = usePromise(() => {
     const query = category === 'all' ? '' : `&category=${category}`;
     return axios.get(
-      `https://newsapi.org/v2/top-headlines?country=kr${query}&apiKey=A384e22774024150b910eb0325bc9371`,
+      `https://newsapi.org/v2/top-headlines?country=us${query}&apiKey=A384e22774024150b910eb0325bc9371`,
     );
   }, [category]);
 

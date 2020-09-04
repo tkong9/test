@@ -38,51 +38,55 @@ const categories = [
 ];
 
 const CategoriesBlock = styled.div`
+  z-index: 10;
+  padding: 0.5rem;
+  overflow-x: scroll;
   display: flex;
   position: sticky;
   color: grey;
   top: 0;
+  left: 0;
+  right: 0;
   background: white;
-  justify-content: center;
+  justify-content: start;
   padding: 1rem;
-  width: 100%;
   margin: 0 auto;
-  @media screen and (max-width: 768px) {
-    width: 100%;
-    overflow-x: auto;
+  width: 100%;
+  overflow-x: auto;
+  @media (min-width: 480px) {
+    max-width: 760px;
+  }
+  @media (min-width: 960px) {
+    max-width: 1400px;
   }
 `;
-
 const Category = styled(NavLink)`
+  flex-grow: 1;
   color: grey;
-  font-size: 1.125rem;
-  border-radius: 1.5rem;
+  text-align: center;
+  font-size: 1rem;
   padding: 0.5rem;
-  cursor: pointer;
-  white-space: pre;
+  font-weight: 400;
+  cursor: pointer; /* white-space: pre; */
   text-decoration: none;
   color: inherit;
   &:hover {
     color: #495057;
   }
-
   &.active {
-    border: 2px solid black;
-    font-weight: 600;
+    border: 1px solid #0c0c0c;
+    font-weight: 700;
     color: black;
+    border-radius: 2rem;
     &:hover {
       font-weight: bold;
     }
-  }
-
-  & + & {
-    margin-left: 1rem;
   }
 `;
 
 const Categories = () => {
   return (
-    <CategoriesBlock>
+    <CategoriesBlock className="category">
       {categories.map((c) => (
         <Category
           key={c.name}

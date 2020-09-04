@@ -5,31 +5,31 @@ import { NavLink } from 'react-router-dom';
 const categories = [
   {
     name: 'all',
-    text: '전체보기',
+    text: 'All',
   },
   {
     name: 'business',
-    text: '비즈니스',
+    text: 'Business',
   },
   {
     name: 'entertainment',
-    text: '엔터테인먼트',
+    text: 'Entertainment',
   },
   {
     name: 'health',
-    text: '건강',
+    text: 'Health',
   },
   {
     name: 'science',
-    text: '과학',
+    text: 'Science',
   },
   {
     name: 'sports',
-    text: '스포츠',
+    text: 'Sports',
   },
   {
     name: 'technology',
-    text: '기술',
+    text: 'Technology',
   },
 ];
 
